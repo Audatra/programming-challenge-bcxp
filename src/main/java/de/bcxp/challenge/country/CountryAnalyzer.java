@@ -15,6 +15,10 @@ public class CountryAnalyzer{
         this.repository = repository;
     }
 
+    /**
+     * Calculates the country with the highest population density
+     * @return country with highest population density
+     */
     public String getCountryWithHighestPopulationDensity(){
         List<Country> countryEntries = repository.getCountryEntries();
         if(countryEntries.size() == 0){

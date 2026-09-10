@@ -15,7 +15,6 @@ public class CsvCountryRepository implements CountryRepository {
     static final Logger logger = LoggerFactory.getLogger(CsvCountryRepository.class);
 
     public CsvCountryRepository(CsvFileHandler fileHandler){
-        //this.filePath = filePath;
         this.countryEntries = new ArrayList<>();
 
             List<CSVRecord> records = fileHandler.getFileContents();
@@ -36,11 +35,21 @@ public class CsvCountryRepository implements CountryRepository {
             }
     }
 
+    /**
+     *Converts a String of a number using ',' as the decimal seperator to a double
+     *@param s the String to be converted
+     *@return the double value
+     **/
     private double convertToDouble(String s){
         s.replace(',', '.');
         return Double.parseDouble(s);
     }
 
+    /**
+     *Converts a String representing the population to a long by removing all occurences of '.' as a number divider and removing the fractional part of the number
+     *@param s the String to be converted
+     *@return the long value
+     **/
     private long convertPopulationToLong(String s){
         s = s.replaceAll("\\.", "");
         int index = s.indexOf(",");

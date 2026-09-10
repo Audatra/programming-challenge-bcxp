@@ -12,6 +12,12 @@ public class CsvFileHandler implements FileHandler<CSVRecord> {
     private List<CSVRecord> records;
     static final Logger logger = LoggerFactory.getLogger(CsvFileHandler.class);
 
+    /**
+     * Creates a parser for a CSV file and reads its contents
+     * @param filePath the path where the CSV file is located
+     * @param delimiter the delimiter used to seperate the entries
+     * @param headerEnum the Enum that represents the headers
+     */
     public CsvFileHandler(String filePath, char delimiter, Class<? extends Enum<?>> headerEnum){
         this.records = new ArrayList<>();
 

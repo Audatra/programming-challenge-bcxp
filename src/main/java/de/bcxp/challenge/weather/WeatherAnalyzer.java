@@ -10,6 +10,10 @@ public class WeatherAnalyzer{
         this.repository = repository;
     }
 
+    /**
+     * Calculates the weather record with the smallest temperature spread
+     * @return weather record with lowest temperature spread
+     */
     public String getDayWithSmallestTempSpread(){
         List<Weather> weatherEntries = repository.getWeatherEntries();
         if(weatherEntries == null || weatherEntries.size() == 0){
