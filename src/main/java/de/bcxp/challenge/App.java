@@ -4,6 +4,8 @@ import de.bcxp.challenge.config.CountryConfig;
 import de.bcxp.challenge.config.WeatherConfig;
 import de.bcxp.challenge.country.CountryAnalyzer;
 import de.bcxp.challenge.weather.WeatherAnalyzer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
@@ -13,6 +15,8 @@ public final class App {
 
     private static final String countryFilePath = "/de/bcxp/challenge/countries.csv";
     private static final String weatherFilePath = "/de/bcxp/challenge/weather.csv";
+
+    final static Logger logger = LoggerFactory.getLogger(App.class);
 
     /**
      * This is the main entry method of your program.
@@ -28,9 +32,17 @@ public final class App {
         WeatherAnalyzer weatherAnalyzer = weatherConfig.weatherAnalyzer(weatherFilePath);
 
         String dayWithSmallestTempSpread = weatherAnalyzer.getDayWithSmallestTempSpread();
-        System.out.printf("Day with smallest temperature spread: %s%n", dayWithSmallestTempSpread);
+        if(dayWithSmallestTempSpread == null){
+            logger.warn("The day received from WeatherAnalyzer is null");
+        }else{
+            System.out.printf("Day with smallest temperature spread: %s%n", dayWithSmallestTempSpread);
+        }
 
         String countryWithHighestPopulationDensity = countryAnalyzer.getCountryWithHighestPopulationDensity();
-        System.out.printf("Country with highest population density: %s%n", countryWithHighestPopulationDensity);
+        if(countryWithHighestPopulationDensity == null){
+            logger.warn("The country received from CountryAnalyzer is null");
+        }else{
+            System.out.printf("Country with highest population density: %s%n", countryWithHighestPopulationDensity);
+        }
     }
 }
